@@ -2,150 +2,201 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Need a Secure Password? Generated in One Click. No Signup.</title>
-<meta name="description" content="Need a secure password right now? Generate strong random passwords in one click. No signup, no data sent — 100% in your browser.">
-<meta name="keywords" content="password generator, random password, secure password, strong password, free tool">
-<meta property="og:title" content="Need a Secure Password? One Click. No Signup.">
-<meta property="og:description" content="Need a secure password right now? Generated in one click. No signup, nothing leaves your browser.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://maxmini0214.github.io/password-generator/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Generator – Secure Random Passwords with Entropy Analysis | MaxDevTools</title>
+<meta name="description" content="Generate cryptographically secure passwords with real-time entropy analysis, brute-force time estimation, and strength visualization. Free, open-source, no data leaves your browser.">
+<meta name="keywords" content="password generator, secure password, random password, entropy, brute force time, password strength, crypto random">
+<meta name="author" content="MaxDevTools">
 <link rel="canonical" href="https://maxmini0214.github.io/password-generator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Password Generator – Secure Random Passwords with Entropy Analysis">
+<meta property="og:description" content="Generate cryptographically secure passwords with real-time entropy analysis and brute-force time estimation.">
+<meta property="og:url" content="https://maxmini0214.github.io/password-generator/">
+<meta property="og:site_name" content="MaxDevTools">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Password Generator – Secure Random Passwords | MaxDevTools">
+<meta name="twitter:description" content="Generate cryptographically secure passwords with real-time entropy analysis.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0a0a;color:#e0e0e0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
-h1{font-size:1.8rem;margin:20px 0 8px;text-align:center}
-h1 span{color:#7c3aed}
-.subtitle{color:#888;margin-bottom:24px;text-align:center;font-size:.95rem}
-.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:16px;padding:28px;width:100%;max-width:560px;margin-bottom:16px}
-label{display:block;font-size:.85rem;color:#aaa;margin-bottom:6px;font-weight:500}
-.slider-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.slider-row input[type=range]{flex:1;accent-color:#7c3aed;height:6px}
-.slider-row .val{background:#7c3aed;color:#fff;border-radius:8px;padding:4px 12px;font-weight:700;min-width:44px;text-align:center;font-size:.9rem}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.opt{display:flex;align-items:center;gap:8px;background:#12122a;border:1px solid #2a2a4a;border-radius:10px;padding:10px 14px;cursor:pointer;transition:.2s}
-.opt:hover{border-color:#7c3aed}
-.opt input{accent-color:#7c3aed;width:18px;height:18px}
-.opt span{font-size:.9rem}
-.count-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.count-row select{background:#12122a;color:#e0e0e0;border:1px solid #2a2a4a;border-radius:8px;padding:8px 12px;font-size:.9rem}
-.btn{background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:12px 24px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;transition:.2s}
-.btn:hover{background:#6d28d9}
-.btn:active{transform:scale(.98)}
-.results{margin-top:16px}
-.pw-row{display:flex;align-items:center;gap:8px;background:#12122a;border:1px solid #2a2a4a;border-radius:10px;padding:12px;margin-bottom:8px;word-break:break-all}
-.pw-row .pw{flex:1;font-family:'SF Mono',Monaco,Consolas,monospace;font-size:.95rem;letter-spacing:.5px}
-.pw-row .copy-btn{background:#2a2a4a;color:#ccc;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.8rem;white-space:nowrap;transition:.2s}
-.pw-row .copy-btn:hover{background:#7c3aed;color:#fff}
-.pw-row .copy-btn.copied{background:#10b981;color:#fff}
-.strength-bar{height:6px;border-radius:3px;background:#2a2a4a;margin-top:4px;overflow:hidden}
-.strength-bar .fill{height:100%;border-radius:3px;transition:width .3s,background .3s}
-.strength-label{font-size:.8rem;margin-top:4px;font-weight:600}
-.s-weak{color:#ef4444}.s-medium{color:#f59e0b}.s-strong{color:#3b82f6}.s-vstrong{color:#10b981}
-footer{margin-top:auto;padding:20px;color:#555;font-size:.8rem;text-align:center}
-footer a{color:#7c3aed;text-decoration:none}
-@media(max-width:480px){h1{font-size:1.4rem}.options{grid-template-columns:1fr}.card{padding:20px}}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--text:#f1f5f9;--text2:#94a3b8;--accent:#3b82f6;--accent2:#60a5fa;--green:#22c55e;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--radius:12px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
+.container{max-width:560px;width:100%}
+h1{font-size:1.75rem;text-align:center;margin:24px 0 8px;background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:var(--text2);font-size:.9rem;margin-bottom:28px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.password-display{position:relative;display:flex;align-items:center;gap:8px}
+#password{flex:1;font-family:'Courier New',monospace;font-size:1.1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;color:var(--text);word-break:break-all;min-height:52px;outline:none}
+.btn{border:none;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:.95rem;transition:all .15s}
+.btn-icon{width:44px;height:44px;background:var(--surface2);color:var(--text)}
+.btn-icon:hover{background:var(--accent);color:#fff}
+.strength-bar{height:6px;background:var(--bg);border-radius:3px;margin:12px 0 8px;overflow:hidden}
+.strength-fill{height:100%;border-radius:3px;transition:width .3s,background .3s}
+.entropy-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.entropy-item{background:var(--bg);border-radius:8px;padding:10px 12px}
+.entropy-label{font-size:.7rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.entropy-value{font-size:.95rem;font-weight:600;margin-top:2px}
+.controls label{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.controls label:last-child{border:none}
+.slider-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.slider-row input[type=range]{flex:1;accent-color:var(--accent)}
+.slider-val{font-weight:700;font-size:1.1rem;min-width:36px;text-align:center}
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle .slider{position:absolute;inset:0;background:var(--surface2);border-radius:12px;cursor:pointer;transition:.2s}
+.toggle .slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s}
+.toggle input:checked+.slider{background:var(--accent)}
+.toggle input:checked+.slider::before{transform:translateX(20px)}
+.btn-generate{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),#2563eb);color:#fff;font-size:1rem;font-weight:600;border-radius:var(--radius);margin-top:8px}
+.btn-generate:hover{filter:brightness(1.1)}
+.footer{text-align:center;margin-top:24px;font-size:.8rem;color:var(--text2)}
+.footer a{color:var(--accent2);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.cross-link{text-align:center;margin:16px 0}
+.cross-link a{color:var(--accent2);font-size:.85rem;text-decoration:none}
+.cross-link a:hover{text-decoration:underline}
+.gh-star{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0;padding:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);text-decoration:none;font-size:.9rem;transition:.15s}
+.gh-star:hover{border-color:var(--accent);background:var(--surface2)}
+.gh-star svg{width:20px;height:20px;fill:var(--text)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:#fff;padding:10px 24px;border-radius:8px;font-size:.9rem;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:99}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.badge{text-align:center;margin:8px 0}
+@media(max-width:480px){h1{font-size:1.4rem}.entropy-grid{grid-template-columns:1fr}#password{font-size:.95rem}}
 </style>
 </head>
 <body>
-<h1>🔐 Need a secure password?</h1>
-<p class="subtitle">Generated in one click. No signup. Nothing leaves your browser.</p>
+<div class="container">
+<h1>🔐 Password Generator</h1>
+<p class="subtitle">Cryptographically secure • Client-side only</p>
 
 <div class="card">
-  <label>Password Length: <strong id="lenVal">16</strong></label>
-  <div class="slider-row">
-    <span class="val">8</span>
-    <input type="range" id="lenSlider" min="8" max="128" value="16">
-    <span class="val">128</span>
-  </div>
-
-  <label>Character Types</label>
-  <div class="options">
-    <label class="opt"><input type="checkbox" id="upper" checked><span>ABC Uppercase</span></label>
-    <label class="opt"><input type="checkbox" id="lower" checked><span>abc Lowercase</span></label>
-    <label class="opt"><input type="checkbox" id="digits" checked><span>123 Numbers</span></label>
-    <label class="opt"><input type="checkbox" id="special" checked><span>!@# Symbols</span></label>
-  </div>
-
-  <div class="count-row">
-    <label style="margin:0">Generate</label>
-    <select id="count">
-      <option value="1">1 password</option>
-      <option value="3">3 passwords</option>
-      <option value="5">5 passwords</option>
-      <option value="10">10 passwords</option>
-    </select>
-  </div>
-
-  <button class="btn" id="genBtn">Generate Password(s)</button>
-
-  <div class="results" id="results"></div>
+<div class="password-display">
+<div id="password"></div>
+<button class="btn btn-icon" onclick="copyPassword()" title="Copy">📋</button>
+<button class="btn btn-icon" onclick="generate()" title="Regenerate">🔄</button>
+</div>
+<div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+<div id="strengthLabel" style="font-size:.8rem;color:var(--text2)"></div>
+<div class="entropy-grid">
+<div class="entropy-item"><div class="entropy-label">Entropy</div><div class="entropy-value" id="entropyBits">–</div></div>
+<div class="entropy-item"><div class="entropy-label">Brute Force</div><div class="entropy-value" id="bruteTime">–</div></div>
+<div class="entropy-item"><div class="entropy-label">Combinations</div><div class="entropy-value" id="combos">–</div></div>
+<div class="entropy-item"><div class="entropy-label">Charset Size</div><div class="entropy-value" id="charsetSize">–</div></div>
+</div>
 </div>
 
-<footer>
-  Uses <code>crypto.getRandomValues()</code> — no data leaves your browser.<br>
-  <a href="https://github.com/maxmini0214/password-generator">View Source on GitHub</a>
-</footer>
+<div class="card controls">
+<div class="slider-row">
+<span style="font-size:.9rem">Length</span>
+<input type="range" id="length" min="8" max="128" value="20" oninput="updateLen();generate()">
+<span class="slider-val" id="lenVal">20</span>
+</div>
+<label>Uppercase (A-Z)<span class="toggle"><input type="checkbox" id="upper" checked onchange="generate()"><span class="slider"></span></span></label>
+<label>Lowercase (a-z)<span class="toggle"><input type="checkbox" id="lower" checked onchange="generate()"><span class="slider"></span></span></label>
+<label>Numbers (0-9)<span class="toggle"><input type="checkbox" id="digits" checked onchange="generate()"><span class="slider"></span></span></label>
+<label>Symbols (!@#$...)<span class="toggle"><input type="checkbox" id="symbols" checked onchange="generate()"><span class="slider"></span></span></label>
+<button class="btn btn-generate" onclick="generate()">Generate Password</button>
+</div>
+
+<a class="gh-star" href="https://github.com/maxmini0214/password-generator" target="_blank" rel="noopener">
+<svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+⭐ Star on GitHub
+</a>
+
+<div class="cross-link">
+<a href="https://maxmini0214.github.io/password-strength-analyzer/" target="_blank">🔍 Check password strength with our Password Strength Analyzer →</a>
+</div>
+
+<div class="badge">
+<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmaxmini0214.github.io%2Fpassword-generator%2F&count_bg=%233B82F6&title_bg=%231E293B&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=true" alt="visitor count">
+</div>
+
+<div class="footer">
+<p>Built with ❤️ by <a href="https://github.com/maxmini0214">MaxDevTools</a></p>
+<p style="margin-top:4px">All generation happens in your browser. No data is sent anywhere.</p>
+</div>
+</div>
+
+<div class="toast" id="toast">Copied to clipboard!</div>
 
 <script>
-const $ = s => document.getElementById(s);
-const slider = $('lenSlider'), lenVal = $('lenVal');
-slider.addEventListener('input', () => lenVal.textContent = slider.value);
+const $=id=>document.getElementById(id);
+const UPPER='ABCDEFGHIJKLMNOPQRSTUVWXYZ',LOWER='abcdefghijklmnopqrstuvwxyz',DIGITS='0123456789',SYMBOLS='!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
 
-function generate() {
-  const len = +slider.value;
-  const sets = [];
-  if ($('upper').checked) sets.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-  if ($('lower').checked) sets.push('abcdefghijklmnopqrstuvwxyz');
-  if ($('digits').checked) sets.push('0123456789');
-  if ($('special').checked) sets.push('!@#$%^&*()_+-=[]{}|;:,.<>?');
-  if (!sets.length) { alert('Select at least one character type'); return; }
-  const pool = sets.join('');
-  const count = +$('count').value;
-  const res = $('results');
-  res.innerHTML = '';
+function updateLen(){$('lenVal').textContent=$('length').value}
 
-  for (let i = 0; i < count; i++) {
-    const arr = new Uint32Array(len);
-    crypto.getRandomValues(arr);
-    let pw = '';
-    for (let j = 0; j < len; j++) pw += pool[arr[j] % pool.length];
-
-    const strength = calcStrength(pw, pool.length, len);
-    const row = document.createElement('div');
-    row.innerHTML = `
-      <div class="pw-row">
-        <span class="pw">${esc(pw)}</span>
-        <button class="copy-btn" onclick="copyPw(this,'${esc(pw)}')">Copy</button>
-      </div>
-      <div class="strength-bar"><div class="fill" style="width:${strength.pct}%;background:${strength.color}"></div></div>
-      <div class="strength-label ${strength.cls}">${strength.label}</div>`;
-    res.appendChild(row);
-  }
+function getCharset(){
+  let c='';
+  if($('upper').checked)c+=UPPER;
+  if($('lower').checked)c+=LOWER;
+  if($('digits').checked)c+=DIGITS;
+  if($('symbols').checked)c+=SYMBOLS;
+  return c;
 }
 
-function calcStrength(pw, poolSize, len) {
-  const bits = Math.log2(poolSize) * len;
-  if (bits < 40) return {pct:25,color:'#ef4444',label:'Weak',cls:'s-weak'};
-  if (bits < 60) return {pct:50,color:'#f59e0b',label:'Medium',cls:'s-medium'};
-  if (bits < 80) return {pct:75,color:'#3b82f6',label:'Strong',cls:'s-strong'};
-  return {pct:100,color:'#10b981',label:'Very Strong',cls:'s-vstrong'};
+function generate(){
+  const charset=getCharset();
+  if(!charset){$('password').textContent='Select at least one option';return}
+  const len=+$('length').value;
+  const arr=new Uint32Array(len);
+  crypto.getRandomValues(arr);
+  let pw='';
+  for(let i=0;i<len;i++)pw+=charset[arr[i]%charset.length];
+  $('password').textContent=pw;
+  updateEntropy(len,charset.length);
 }
 
-function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function updateEntropy(len,pool){
+  const bits=len*Math.log2(pool);
+  const combos=Math.pow(pool,len);
+  $('entropyBits').textContent=bits.toFixed(1)+' bits';
+  $('charsetSize').textContent=pool+' chars';
+  // brute force @ 1 trillion/sec
+  const seconds=combos/1e12;
+  $('bruteTime').textContent=formatTime(seconds);
+  $('combos').textContent=formatCombos(bits);
+  // strength bar
+  const pct=Math.min(bits/128*100,100);
+  const fill=$('strengthFill');
+  fill.style.width=pct+'%';
+  let color,label;
+  if(bits<40){color='var(--red)';label='Weak'}
+  else if(bits<60){color='var(--orange)';label='Fair'}
+  else if(bits<80){color='var(--yellow)';label='Good'}
+  else if(bits<100){color='var(--green)';label='Strong'}
+  else{color='var(--green)';label='Very Strong'}
+  fill.style.background=color;
+  $('strengthLabel').textContent=label+' ('+bits.toFixed(0)+' bits)';
+  $('strengthLabel').style.color=color;
+}
 
-function copyPw(btn, text) {
-  // decode HTML entities
-  const t = document.createElement('textarea');
-  t.innerHTML = text;
-  navigator.clipboard.writeText(t.value).then(() => {
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+function formatTime(s){
+  if(!isFinite(s)||s>3.15e25)return '∞ (heat death)';
+  if(s<1)return '< 1 second';
+  if(s<60)return s.toFixed(0)+' sec';
+  if(s<3600)return (s/60).toFixed(0)+' min';
+  if(s<86400)return (s/3600).toFixed(0)+' hours';
+  if(s<3.15e7)return (s/86400).toFixed(0)+' days';
+  if(s<3.15e9)return (s/3.15e7).toFixed(0)+' years';
+  if(s<3.15e12)return (s/3.15e9).toFixed(0)+'K years';
+  if(s<3.15e15)return (s/3.15e12).toFixed(0)+'M years';
+  if(s<3.15e18)return (s/3.15e15).toFixed(0)+'B years';
+  return (s/3.15e18).toFixed(0)+'T+ years';
+}
+
+function formatCombos(bits){
+  if(bits<10)return Math.pow(2,bits).toFixed(0);
+  return '2^'+bits.toFixed(0);
+}
+
+function copyPassword(){
+  const pw=$('password').textContent;
+  if(!pw)return;
+  navigator.clipboard.writeText(pw).then(()=>{
+    const t=$('toast');t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2000);
   });
 }
 
-$('genBtn').addEventListener('click', generate);
 generate();
 </script>
 </body>
