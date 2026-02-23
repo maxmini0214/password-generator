@@ -85,6 +85,20 @@ h1{font-size:1.75rem;text-align:center;margin:24px 0 8px;background:linear-gradi
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is this password generator safe to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All passwords are generated using the Web Crypto API (crypto.getRandomValues) directly in your browser. No data is ever sent to a server. You can verify by checking the source code or browser network inspector."}},
+    {"@type": "Question", "name": "How many bits of entropy should a strong password have?", "acceptedAnswer": {"@type": "Answer", "text": "For most purposes, 80+ bits of entropy is considered strong. A 20-character password with uppercase, lowercase, numbers, and symbols provides about 131 bits — far beyond brute force capability. For critical accounts, aim for 100+ bits."}},
+    {"@type": "Question", "name": "What does brute force time mean?", "acceptedAnswer": {"@type": "Answer", "text": "Brute force time estimates how long an attacker trying 1 trillion passwords per second would take to crack your password. Real-world attacks are usually slower due to rate limiting and slow hash algorithms like bcrypt."}},
+    {"@type": "Question", "name": "Can I generate passwords without symbols?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Toggle off the Symbols option to generate passwords with only letters and numbers. Some older systems don't accept special characters. The entropy display updates to show the impact on strength."}},
+    {"@type": "Question", "name": "Is a longer password always better?", "acceptedAnswer": {"@type": "Answer", "text": "Generally yes — each additional character exponentially increases the number of possible combinations. A 16-character password is billions of times harder to crack than an 8-character one. We recommend at least 16 characters for important accounts."}},
+    {"@type": "Question", "name": "Does this work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Since all generation happens client-side using the Web Crypto API, you can save this page and use it offline. No internet connection or server is needed."}}
+  ]
+}
+</script>
 </head>
 <body>
 <div class="container">
@@ -125,8 +139,41 @@ h1{font-size:1.75rem;text-align:center;margin:24px 0 8px;background:linear-gradi
 ⭐ Star on GitHub
 </a>
 
+<div class="card" style="margin-top:16px">
+<h2 style="font-size:1.1rem;margin-bottom:12px">📖 How to Use</h2>
+<ol style="padding-left:20px;font-size:.9rem;color:var(--text2);line-height:1.7">
+<li><strong>Set length</strong> — drag the slider (16+ recommended for important accounts)</li>
+<li><strong>Choose character types</strong> — enable uppercase, lowercase, numbers, and symbols for maximum entropy</li>
+<li><strong>Generate</strong> — click Generate or 🔄 to create a new password instantly</li>
+<li><strong>Copy & share</strong> — click 📋 to copy, or 🔗 Share to save your settings as a URL</li>
+</ol>
+</div>
+
+<div style="text-align:center;margin:12px 0">
+<button class="btn" onclick="shareSettings()" style="padding:10px 20px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:.9rem">🔗 Share Settings</button>
+</div>
+
 <div class="cross-link">
-<a href="https://maxmini0214.github.io/password-strength-analyzer/" target="_blank">🔍 Check password strength with our Password Strength Analyzer →</a>
+<a href="https://maxmini0214.github.io/password-strength-analyzer/" target="_blank">🔍 Password Strength Analyzer</a> · 
+<a href="https://maxmini0214.github.io/hash-generator/" target="_blank">🔒 Hash Generator</a> · 
+<a href="https://maxmini0214.github.io/regex-tester/" target="_blank">🔤 Regex Tester</a> · 
+<a href="https://maxmini0214.github.io/keyword-mixer/" target="_blank">🔀 Keyword Mixer</a>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h2 style="font-size:1.1rem;margin-bottom:12px">❓ FAQ</h2>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Is this password generator safe to use?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">Yes. All passwords are generated using the Web Crypto API (crypto.getRandomValues) directly in your browser. No data is ever sent to a server. Check the source code or network inspector to verify.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">How many bits of entropy should a strong password have?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">80+ bits is strong for most purposes. A 20-character password with all character types gives ~131 bits — far beyond brute force. For critical accounts, aim for 100+ bits.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">What does brute force time mean?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">It estimates how long an attacker trying 1 trillion passwords/sec would need. Real attacks are slower due to rate limiting and slow hashes like bcrypt.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Can I generate passwords without symbols?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">Yes — toggle off Symbols for letters+numbers only. The entropy display updates to show the strength impact.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Is a longer password always better?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">Generally yes — each extra character exponentially increases combinations. 16-char is billions of times harder to crack than 8-char. We recommend 16+ for important accounts.</p></details>
+<details><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Does this work offline?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">Yes. All generation is client-side via Web Crypto API. Save the page and use offline — no server needed.</p></details>
+</div>
+
+<div style="text-align:center;margin:20px 0;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
+<p style="font-size:.95rem;margin-bottom:8px">🏦 <strong>Like zero-server tools?</strong></p>
+<p style="font-size:.85rem;color:var(--text2);margin-bottom:12px">Try <strong>DonFlow</strong> — budget drift detector, 100% in your browser.</p>
+<a href="https://maxmini0214.github.io/donflow/?demo" target="_blank" style="color:var(--accent2);font-size:.9rem">Try the live demo →</a>
 </div>
 
 <div class="badge">
@@ -220,15 +267,30 @@ function copyPassword(){
   });
 }
 
+function shareSettings(){
+  const p=new URLSearchParams();
+  p.set('len',$('length').value);
+  p.set('upper',$('upper').checked?1:0);
+  p.set('lower',$('lower').checked?1:0);
+  p.set('digits',$('digits').checked?1:0);
+  p.set('symbols',$('symbols').checked?1:0);
+  const url=location.origin+location.pathname+'?'+p.toString();
+  navigator.clipboard.writeText(url).then(()=>{
+    const t=$('toast');t.textContent='Link copied!';t.classList.add('show');
+    setTimeout(()=>{t.classList.remove('show');t.textContent='Copied to clipboard!'},2000);
+  });
+}
+(function restoreFromURL(){
+  const p=new URLSearchParams(location.search);
+  if(p.has('len')){$('length').value=p.get('len');updateLen()}
+  if(p.has('upper'))$('upper').checked=p.get('upper')==='1';
+  if(p.has('lower'))$('lower').checked=p.get('lower')==='1';
+  if(p.has('digits'))$('digits').checked=p.get('digits')==='1';
+  if(p.has('symbols'))$('symbols').checked=p.get('symbols')==='1';
+})();
 generate();
 </script>
 <script data-goatcounter="https://maxdevtools.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-<!-- Support CTA -->
-<div style="max-width:480px;margin:1rem auto 2rem;padding:1.2rem;background:linear-gradient(135deg,#fff7ed,#fef3c7);border:1px solid #fbbf24;border-radius:12px;text-align:center;font-family:system-ui,sans-serif">
-<p style="margin:0 0 0.5rem;font-size:1rem;font-weight:600;color:#92400e">☕ Like this tool? Support the project!</p>
-<p style="margin:0 0 0.8rem;color:#78716c;font-size:0.85rem">Every coffee keeps free tools alive. No account needed.</p>
-<a href="https://paypal.me/maxseats" target="_blank" rel="noopener" style="display:inline-block;padding:0.5rem 1.5rem;background:#0070ba;color:white;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600">☕ Buy Me a Coffee via PayPal</a>
-</div>
 </body>
 </html>
